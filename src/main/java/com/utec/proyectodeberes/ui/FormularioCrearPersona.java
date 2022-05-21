@@ -116,7 +116,7 @@ public class FormularioCrearPersona extends javax.swing.JDialog {
 
             LocalDate fechaNacimiento = parseStringInputALocalDate(inputFecNacimiento.getText());
 
-            Persona persona = new Persona(nombre, apellido, dptoResidencia, cantHijos, fechaNacimiento);
+            Persona persona = new Persona(nombre, apellido, dptoResidencia, cantHijos, fechaNacimiento, null);
 
             crearPersona(persona);
 

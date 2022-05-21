@@ -49,11 +49,13 @@ public class Vehiculo {
     public Persona getDueño() {
         return dueño;
     }
-    
 
     @Override
     public String toString() {
-        return super.toString();
+       
+        String mensaje = "classes.Vehiculo [idVehiculo=" + idVehiculo + ", nombre=" + nombre + ", color=" + color + ", dueño= Persona [idPersona="  + dueño.getIdPersona() + ", nombre=" + dueño.getNombre() + ", apellido=" + dueño.getApellido() + "]";
+
+        return mensaje;
     }
 
 }

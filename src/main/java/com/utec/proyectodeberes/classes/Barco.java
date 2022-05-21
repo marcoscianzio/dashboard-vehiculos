@@ -27,4 +27,11 @@ public class Barco extends Vehiculo {
         this.manga = manga;
     }
 
+    @Override
+    public String toString() {
+        String mensaje = "classes.Barco [idVehiculo=" + idVehiculo + ", nombre=" + nombre + ", color=" + color + ", eslora=" + eslora + ", manga=" + manga + ", dueño= Persona [idPersona=" + dueño.getIdPersona() + ", nombre=" + dueño.getNombre() + ", apellido=" + dueño.getApellido() + "]";
+
+        return mensaje;
+    }
+
 }

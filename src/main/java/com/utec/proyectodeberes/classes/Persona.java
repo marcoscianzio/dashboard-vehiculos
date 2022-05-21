@@ -12,18 +12,19 @@ public class Persona {
     public String dptoResidencia;
     private byte cantHijos;
     private LocalDate fechaNacimiento;
-    public LinkedList<Vehiculo> vehiculos = new LinkedList<>();
+    public LinkedList<Vehiculo> vehiculos = new LinkedList<Vehiculo>();
 
     private static AtomicInteger idSecuencia = new AtomicInteger();
 
     public Persona(String nombre, String apellido, String dptoResidencia, byte cantHijos,
-            LocalDate fechaNacimiento) {
+            LocalDate fechaNacimiento, LinkedList<Vehiculo> vehiculos) {
         this.idPersona = idSecuencia.incrementAndGet();
         this.nombre = nombre;
         this.apellido = apellido;
         this.dptoResidencia = dptoResidencia;
         this.cantHijos = cantHijos;
         this.fechaNacimiento = fechaNacimiento;
+        this.vehiculos = vehiculos;
     }
 
     public Persona() {
@@ -82,11 +83,11 @@ public class Persona {
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
-    
+
     public LinkedList<Vehiculo> getVehiculos() {
         return this.vehiculos;
     }
-    
+
     public void setVehiculos(Vehiculo vehiculos) {
         this.vehiculos.add(vehiculos);
     }
@@ -94,9 +95,13 @@ public class Persona {
     @Override
     public String toString() {
         String mensaje = "classes.Persona [idPersona=" + idPersona + ", nombre=" + nombre + ", apellido=" + apellido + ", dptoResidencia="
-                + dptoResidencia + ", cantHijos=" + cantHijos + ", fechaNacimiento=" + fechaNacimiento + "]";
+                + dptoResidencia + ", cantHijos=" + cantHijos + ", fechaNacimiento=" + fechaNacimiento + ", vehiculos=";
 
-        System.out.println(mensaje);
+        for (Vehiculo v : vehiculos) {
+            mensaje += v.toString();
+        }
+
+        mensaje += "]";
 
         return mensaje;
     }
