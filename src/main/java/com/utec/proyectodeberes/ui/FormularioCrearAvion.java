@@ -41,7 +41,7 @@ public class FormularioCrearAvion extends javax.swing.JPanel {
         inputCantPasajeros.setBorder(null);
         add(inputCantPasajeros, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 150, 20));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\marco\\Downloads\\FormularioCrearAvion.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/FormularioCrearAvion.png"))); // NOI18N
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 

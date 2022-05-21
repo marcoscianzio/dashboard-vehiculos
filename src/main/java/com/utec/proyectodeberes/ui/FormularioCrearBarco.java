@@ -41,7 +41,7 @@ public class FormularioCrearBarco extends javax.swing.JPanel {
         inputEslora.setBorder(null);
         add(inputEslora, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 30, 150, 20));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\marco\\Downloads\\FormularioCrearBarco.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/FormularioCrearBarco.png"))); // NOI18N
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 

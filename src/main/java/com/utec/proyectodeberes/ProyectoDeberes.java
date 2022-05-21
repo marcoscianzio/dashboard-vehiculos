@@ -12,6 +12,7 @@ public class ProyectoDeberes {
             
             MainFrame mainframe = new MainFrame();
         } catch (Exception ex) {
+            System.out.println(ex.getMessage());
             System.err.println("Failed to initialize LaF");
         }
 

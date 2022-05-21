@@ -84,7 +84,7 @@ public class MainFrame extends javax.swing.JFrame {
         tablaPersonas = new javax.swing.JTable();
         inputFiltro = new javax.swing.JTextField();
         btnCrearPersona = new javax.swing.JLabel();
-        bgImage = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -103,6 +103,7 @@ public class MainFrame extends javax.swing.JFrame {
         filtroAviones = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaAviones = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -158,9 +159,8 @@ public class MainFrame extends javax.swing.JFrame {
         });
         bg.add(btnCrearPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 440, 580, 40));
 
-        bgImage.setIcon(new javax.swing.ImageIcon("C:\\Users\\marco\\Downloads\\MainFrameBG.png")); // NOI18N
-        bgImage.setToolTipText("");
-        bg.add(bgImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MainFrameBG.png"))); // NOI18N
+        bg.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jTabbedPane1.addTab("Personas", bg);
 
@@ -216,7 +216,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, 580, 40));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\marco\\Downloads\\MainFrameBG (2).png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/VehiculosBG.png"))); // NOI18N
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, -1));
 
         jTabbedPane2.addTab("Todos", jPanel2);
@@ -267,7 +267,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, 580, 40));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\marco\\Downloads\\MainFrameBG (4).png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/BarcosBG.png"))); // NOI18N
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jTabbedPane2.addTab("Barcos", jPanel3);
@@ -315,7 +315,15 @@ public class MainFrame extends javax.swing.JFrame {
 
         jPanel4.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 580, 200));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\marco\\Downloads\\MainFrameBG (5).png")); // NOI18N
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 440, 580, 40));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/AvionesBG.png"))); // NOI18N
         jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jTabbedPane2.addTab("Aviones", jPanel4);
@@ -378,6 +386,10 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_filtroAvionesActionPerformed
 
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        FormularioCrearVehiculo formCrearVehiculo = new FormularioCrearVehiculo(this, false, "Avion");
+    }//GEN-LAST:event_jLabel7MouseClicked
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -412,7 +424,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
-    private javax.swing.JLabel bgImage;
     private javax.swing.JLabel btnCrearPersona;
     private javax.swing.JTextField filtroAviones;
     private javax.swing.JTextField filtroBarcos;
@@ -423,6 +434,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

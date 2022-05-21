@@ -86,7 +86,7 @@ public class FormularioCrearPersona extends javax.swing.JDialog {
         });
         mainPanel.add(inputFecNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 380, 150, 20));
 
-        bg.setIcon(new javax.swing.ImageIcon("C:\\Users\\marco\\Downloads\\FormularioCrearPersonaBG.png")); // NOI18N
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/FormularioCrearPersonaBG.png"))); // NOI18N
         mainPanel.add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
