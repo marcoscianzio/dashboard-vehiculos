@@ -23,8 +23,8 @@ public class ProyectoDeberes {
             System.err.println("Failed to initialize LaF");
         }
         
-        Persona persona1 = new Persona("Marcos", "Cianzio", "Soriano", (byte) 0, LocalDate.of(2003, Month.FEBRUARY, 9), null);
-        Persona persona2 = new Persona("Lionel", "Messi", "Colonia", (byte) 3, LocalDate.of(1990, Month.AUGUST, 20), null);
+        Persona persona1 = new Persona("Marcos", "Cianzio", "Soriano", (byte) 0, LocalDate.of(2003, Month.FEBRUARY, 9));
+        Persona persona2 = new Persona("Lionel", "Messi", "Colonia", (byte) 3, LocalDate.of(1990, Month.AUGUST, 20));
         
         Vehiculo vehiculo1 = new Vehiculo("Ferrari", "Rojo", persona1);
         
@@ -53,5 +53,14 @@ public class ProyectoDeberes {
         
         Persona persona3 = new Persona("Julian", "Alvarez", "Montevideo", (byte) 5, LocalDate.of(1995, Month.JULY, 17), listaVehiculos);
         System.out.println(persona3.toString());
+        
+        
+        MainFrame.setPersonas(persona1);
+        MainFrame.setPersonas(persona2);
+        
+        vehiculo1.setDueño(persona1);
+        persona1.setVehiculos(vehiculo1);
+        MainFrame.setVehiculos(vehiculo1);
+        
     }
 }

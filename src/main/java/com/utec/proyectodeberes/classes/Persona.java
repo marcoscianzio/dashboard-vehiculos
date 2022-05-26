@@ -12,7 +12,7 @@ public class Persona {
     public String dptoResidencia;
     private byte cantHijos;
     private LocalDate fechaNacimiento;
-    public LinkedList<Vehiculo> vehiculos = new LinkedList<Vehiculo>();
+    private LinkedList<Vehiculo> vehiculos = new LinkedList<Vehiculo>();
 
     private static AtomicInteger idSecuencia = new AtomicInteger();
 
@@ -25,6 +25,16 @@ public class Persona {
         this.cantHijos = cantHijos;
         this.fechaNacimiento = fechaNacimiento;
         this.vehiculos = vehiculos;
+    }
+
+    public Persona(String nombre, String apellido, String dptoResidencia, byte cantHijos,
+            LocalDate fechaNacimiento) {
+        this.idPersona = idSecuencia.incrementAndGet();
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dptoResidencia = dptoResidencia;
+        this.cantHijos = cantHijos;
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public Persona() {
@@ -88,8 +98,8 @@ public class Persona {
         return this.vehiculos;
     }
 
-    public void setVehiculos(Vehiculo vehiculos) {
-        this.vehiculos.add(vehiculos);
+    public void setVehiculos(Vehiculo vehiculo) {
+        this.vehiculos.add(vehiculo);
     }
 
     @Override

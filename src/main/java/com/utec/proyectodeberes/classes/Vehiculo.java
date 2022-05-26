@@ -52,8 +52,8 @@ public class Vehiculo {
 
     @Override
     public String toString() {
-       
-        String mensaje = "classes.Vehiculo [idVehiculo=" + idVehiculo + ", nombre=" + nombre + ", color=" + color + ", dueño= Persona [idPersona="  + dueño.getIdPersona() + ", nombre=" + dueño.getNombre() + ", apellido=" + dueño.getApellido() + "]";
+
+        String mensaje = "classes.Vehiculo [idVehiculo=" + idVehiculo + ", nombre=" + nombre + ", color=" + color + ", dueño= Persona [idPersona=" + dueño.getIdPersona() + ", nombre=" + dueño.getNombre() + ", apellido=" + dueño.getApellido() + "]";
 
         return mensaje;
     }

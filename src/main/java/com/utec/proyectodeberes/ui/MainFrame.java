@@ -1,10 +1,13 @@
 package com.utec.proyectodeberes.ui;
 
+import com.utec.proyectodeberes.classes.Avion;
+import com.utec.proyectodeberes.classes.Barco;
 import com.utec.proyectodeberes.classes.Persona;
 import com.utec.proyectodeberes.classes.Vehiculo;
 import com.utec.proyectodeberes.exceptions.CampoVacioException;
 import java.awt.Component;
 import java.util.LinkedList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -29,6 +32,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     public static void setPersonas(Persona persona) {
         personas.add(persona);
+
+        cantPersonas.setText(String.valueOf(personas.size()));
+
+        agregarFilaTabla(new Object[]{persona.getIdPersona(), persona.getNombre(), persona.getApellido(), persona.getDptoResidencia(), persona.getCantHijos(), persona.getFechaNacimiento()}, tablaPersonas);
     }
 
     public static LinkedList<Persona> getPersonas() {
@@ -37,6 +44,33 @@ public class MainFrame extends javax.swing.JFrame {
 
     public static void setVehiculos(Vehiculo vehiculo) {
         vehiculos.add(vehiculo);
+
+        cantAutos.setText(String.valueOf(vehiculos.size()));
+
+        agregarFilaTabla(new Object[]{vehiculo.getIdVehiculo(), vehiculo.getNombre(), vehiculo.getColor(), vehiculo.getDueño().getIdPersona()}, tablaVehiculos);
+
+        if (vehiculo instanceof Barco) {
+            Barco barco = (Barco) vehiculo;
+            agregarFilaTabla(new Object[]{
+                barco.getIdVehiculo(), barco.getNombre(), barco.getColor(), barco.getEslora(), barco.getManga(), barco.getDueño().getIdPersona()
+            },
+                    tablaBarcos
+            );
+
+            cantBarcos.setText(String.valueOf(contarBarcos()));
+        }
+
+        if (vehiculo instanceof Avion) {
+            Avion avion = (Avion) vehiculo;
+            MainFrame.agregarFilaTabla(new Object[]{
+                avion.getIdVehiculo(), avion.getNombre(), avion.getColor(), avion.getLongitud(), avion.getCantPasajeros(), avion.getDueño().getIdPersona()
+            },
+                    tablaAviones
+            );
+
+            cantAviones.setText(String.valueOf(contarAviones()));
+        }
+
     }
 
     public static LinkedList<Vehiculo> getVehiculos() {
@@ -68,10 +102,35 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void filtrarTabla(String input, JTable tabla) {
+        defaultTableModel = (DefaultTableModel) tabla.getModel();
         TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(defaultTableModel);
         tabla.setRowSorter(trs);
 
         trs.setRowFilter(RowFilter.regexFilter("(?i)" + input));
+    }
+
+    private static int contarBarcos() {
+        int cont = 0;
+
+        for (Vehiculo v : vehiculos) {
+            if (v instanceof Barco) {
+                cont++;
+            }
+        }
+
+        return cont;
+    }
+
+    private static int contarAviones() {
+        int cont = 0;
+
+        for (Vehiculo v : vehiculos) {
+            if (v instanceof Avion) {
+                cont++;
+            }
+        }
+
+        return cont;
     }
 
     @SuppressWarnings("unchecked")
@@ -79,6 +138,13 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel5 = new javax.swing.JPanel();
+        cantAutos = new javax.swing.JLabel();
+        cantBarcos = new javax.swing.JLabel();
+        cantAviones = new javax.swing.JLabel();
+        cantPersonas = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         bg = new javax.swing.JPanel();
         tablaScrollPane = new javax.swing.JScrollPane();
         tablaPersonas = new javax.swing.JTable();
@@ -114,6 +180,30 @@ public class MainFrame extends javax.swing.JFrame {
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.setOpaque(true);
 
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        cantAutos.setFont(new java.awt.Font("Source Sans Pro", 1, 24)); // NOI18N
+        cantAutos.setText("0");
+        jPanel5.add(cantAutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 120, 30));
+
+        cantBarcos.setFont(new java.awt.Font("Source Sans Pro", 1, 24)); // NOI18N
+        cantBarcos.setText("0");
+        jPanel5.add(cantBarcos, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 290, 120, 30));
+
+        cantAviones.setFont(new java.awt.Font("Source Sans Pro", 1, 24)); // NOI18N
+        cantAviones.setText("0");
+        jPanel5.add(cantAviones, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 431, 130, 40));
+
+        cantPersonas.setFont(new java.awt.Font("Source Sans Pro", 1, 24)); // NOI18N
+        cantPersonas.setText("0");
+        jPanel5.add(cantPersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 120, -1));
+        jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, -1, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/DashboardBG.png"))); // NOI18N
+        jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jTabbedPane1.addTab("Dashboard", jPanel5);
+
         bg.setBackground(new java.awt.Color(255, 255, 255));
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -129,14 +219,25 @@ public class MainFrame extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Byte.class, java.lang.Object.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         tablaPersonas.setRowHeight(25);
-        tablaPersonas.setRowSelectionAllowed(false);
         tablaPersonas.getTableHeader().setReorderingAllowed(false);
+        tablaPersonas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaPersonasMouseClicked(evt);
+            }
+        });
         tablaScrollPane.setViewportView(tablaPersonas);
 
         bg.add(tablaScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 580, 210));
@@ -390,6 +491,22 @@ public class MainFrame extends javax.swing.JFrame {
         FormularioCrearVehiculo formCrearVehiculo = new FormularioCrearVehiculo(this, false, "Avion");
     }//GEN-LAST:event_jLabel7MouseClicked
 
+    private void tablaPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPersonasMouseClicked
+        if (evt.getClickCount() == 2) {
+            JTable target = (JTable) evt.getSource();
+            int row = target.getSelectedRow();
+
+            Persona persona = personas.get(row);
+
+            if (!persona.getVehiculos().isEmpty()) {
+                PersonaVehiculos personaVehiculos = new PersonaVehiculos(this, false, persona.getIdPersona(), persona.getVehiculos());
+            } else {
+                JOptionPane.showMessageDialog(null, "Esta persona no tiene vehiculos", "Info", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        }
+    }//GEN-LAST:event_tablaPersonasMouseClicked
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -425,21 +542,28 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private javax.swing.JLabel btnCrearPersona;
+    public static javax.swing.JLabel cantAutos;
+    public static javax.swing.JLabel cantAviones;
+    public static javax.swing.JLabel cantBarcos;
+    public static javax.swing.JLabel cantPersonas;
     private javax.swing.JTextField filtroAviones;
     private javax.swing.JTextField filtroBarcos;
     private javax.swing.JTextField filtroVehiculos;
     private javax.swing.JTextField inputFiltro;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

@@ -30,30 +30,6 @@ public class FormularioCrearVehiculo extends javax.swing.JDialog {
         setVisible(true);
     }
 
-    public void crearVehiculo(Vehiculo vehiculo, int idDueño) {
-        MainFrame.agregarFilaTabla(new Object[]{vehiculo.getIdVehiculo(), vehiculo.getNombre(), vehiculo.getColor(), idDueño}, MainFrame.tablaVehiculos);
-    }
-
-    public void crearBarco(Barco barco, int idDueño) {
-        MainFrame.agregarFilaTabla(new Object[]{
-            barco.getIdVehiculo(), barco.getNombre(), barco.getColor(), barco.getEslora(), barco.getManga(), idDueño
-        },
-                MainFrame.tablaBarcos
-        );
-
-        MainFrame.setVehiculos(barco);
-    }
-
-    public void crearAvion(Avion avion, int idDueño) {
-        MainFrame.agregarFilaTabla(new Object[]{
-            avion.getIdVehiculo(), avion.getNombre(), avion.getColor(), avion.getLongitud(), avion.getCantPasajeros(), idDueño
-        },
-                MainFrame.tablaAviones
-        );
-
-        MainFrame.setVehiculos(avion);
-    }
-
     public static void llenarCombobox() {
         for (Persona p : personas) {
             int id = p.getIdPersona();
@@ -170,18 +146,16 @@ public class FormularioCrearVehiculo extends javax.swing.JDialog {
 
             Vehiculo vehiculo = new Vehiculo(nombre, color, dueño);
 
-            crearVehiculo(vehiculo, dueño.getIdPersona());
-
             if (tipo.equals("Barco")) {
                 double eslora = Double.parseDouble(MainFrame.validarCampoVacio(formularioCrearBarco2.getEslora()));
 
                 double manga = Double.parseDouble(MainFrame.validarCampoVacio(formularioCrearBarco2.getManga()));
 
-                Barco barco = new Barco(eslora, manga, nombre, color, null);
+                Barco barco = new Barco(eslora, manga, nombre, color, dueño);
 
                 dueño.setVehiculos(barco);
 
-                crearBarco(barco, dueño.getIdPersona());
+                MainFrame.setVehiculos(barco);
 
                 MainFrame.limpiarCampos(formularioCrearBarco2);
             }
@@ -191,11 +165,11 @@ public class FormularioCrearVehiculo extends javax.swing.JDialog {
 
                 int cantPasajeros = Integer.parseInt(MainFrame.validarCampoVacio(formularioCrearAvion1.getCantPasajeros()));
 
-                Avion avion = new Avion(longitud, cantPasajeros, nombre, color, null);
+                Avion avion = new Avion(longitud, cantPasajeros, nombre, color, dueño);
 
                 dueño.setVehiculos(avion);
 
-                crearAvion(avion, dueño.getIdPersona());
+                MainFrame.setVehiculos(avion);
 
                 MainFrame.limpiarCampos(formularioCrearAvion1);
             } else {
@@ -204,7 +178,6 @@ public class FormularioCrearVehiculo extends javax.swing.JDialog {
             }
 
             MainFrame.limpiarCampos(jPanel1);
-
             JOptionPane.showMessageDialog(null, tipo + " creado con éxito", "Éxito", JOptionPane.NO_OPTION);
         } catch (CampoVacioException e) {
 

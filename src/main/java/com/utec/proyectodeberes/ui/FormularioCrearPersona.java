@@ -20,12 +20,6 @@ public class FormularioCrearPersona extends javax.swing.JDialog {
         setVisible(true);
     }
 
-    private void crearPersona(Persona persona) {
-        MainFrame.agregarFilaTabla(new Object[]{persona.getIdPersona(), persona.getNombre(), persona.getApellido(), persona.getDptoResidencia(), persona.getCantHijos(), persona.getFechaNacimiento()}, MainFrame.tablaPersonas);
-
-        MainFrame.setPersonas(persona);
-    }
-
     private LocalDate parseStringInputALocalDate(String input) {
         DateTimeFormatter formatter = new DateTimeFormatterBuilder().parseCaseInsensitive().appendPattern("dd/MM/yyyy").toFormatter();
         LocalDate formattedDate = LocalDate.parse(input, formatter);
@@ -116,9 +110,9 @@ public class FormularioCrearPersona extends javax.swing.JDialog {
 
             LocalDate fechaNacimiento = parseStringInputALocalDate(inputFecNacimiento.getText());
 
-            Persona persona = new Persona(nombre, apellido, dptoResidencia, cantHijos, fechaNacimiento, null);
+            Persona persona = new Persona(nombre, apellido, dptoResidencia, cantHijos, fechaNacimiento);
 
-            crearPersona(persona);
+            MainFrame.setPersonas(persona);
 
             MainFrame.limpiarCampos(mainPanel);
 
