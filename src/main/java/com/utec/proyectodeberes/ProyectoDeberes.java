@@ -49,12 +49,6 @@ public class ProyectoDeberes {
             System.out.println(v.toString());
         }
         
-        System.out.println("-- Persona 3");
-        
-        Persona persona3 = new Persona("Julian", "Alvarez", "Montevideo", (byte) 5, LocalDate.of(1995, Month.JULY, 17), listaVehiculos);
-        System.out.println(persona3.toString());
-        
-        
         MainFrame.setPersonas(persona1);
         MainFrame.setPersonas(persona2);
         
