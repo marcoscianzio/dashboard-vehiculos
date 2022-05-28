@@ -144,8 +144,6 @@ public class FormularioCrearVehiculo extends javax.swing.JDialog {
 
             Persona dueño = personas.get(comboDueño.getSelectedIndex());
 
-            Vehiculo vehiculo = new Vehiculo(nombre, color, dueño);
-
             if (tipo.equals("Barco")) {
                 double eslora = Double.parseDouble(MainFrame.validarCampoVacio(formularioCrearBarco2.getEslora()));
 
@@ -158,9 +156,7 @@ public class FormularioCrearVehiculo extends javax.swing.JDialog {
                 MainFrame.setVehiculos(barco);
 
                 MainFrame.limpiarCampos(formularioCrearBarco2);
-            }
-
-            if (tipo.equals("Avion")) {
+            } else if (tipo.equals("Avion")) {
                 double longitud = Double.parseDouble(MainFrame.validarCampoVacio(formularioCrearAvion1.getLongitud()));
 
                 int cantPasajeros = Integer.parseInt(MainFrame.validarCampoVacio(formularioCrearAvion1.getCantPasajeros()));
@@ -173,6 +169,8 @@ public class FormularioCrearVehiculo extends javax.swing.JDialog {
 
                 MainFrame.limpiarCampos(formularioCrearAvion1);
             } else {
+                Vehiculo vehiculo = new Vehiculo(nombre, color, dueño);
+
                 MainFrame.setVehiculos(vehiculo);
                 dueño.setVehiculos(vehiculo);
             }
